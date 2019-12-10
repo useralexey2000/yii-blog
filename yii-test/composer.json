@@ -1,0 +1,10 @@
+{
+    "require": {
+        "yiisoft/yii2": "*",
+        "yiisoft/yii2-bootstrap": "*"
+    },
+    "require-dev": {
+        "yiisoft/yii2-debug": "*",
+        "yiisoft/yii2-gii": "*"
+    }
+}
