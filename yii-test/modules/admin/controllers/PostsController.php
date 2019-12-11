@@ -25,7 +25,7 @@ class PostsController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'view', 'update', 'delete',],
+                        'actions' => ['index', 'view', 'update', 'delete', 'comments'],
                         'allow' => true,
                         'roles' => ['admin'],
                     ],
