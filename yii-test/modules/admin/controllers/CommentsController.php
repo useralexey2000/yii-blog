@@ -5,9 +5,36 @@ use Yii;
 use yii\web\Controller;
 use app\models\Comment;
 use yii\data\ActiveDataProvider;
+use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+
 
 class CommentsController extends Controller
 {
+
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+               'class' => VerbFilter::className(),
+               'actions' => [
+                   'delete' => ['POST'],
+               ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['index', 'view', 'update', 'delete',],
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                ],
+            ],
+
+         ];
+    }
+
     public function actionIndex()
     {
         $posts = new ActiveDataProvider([

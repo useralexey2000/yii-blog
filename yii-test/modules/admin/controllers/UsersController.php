@@ -7,6 +7,7 @@ use app\models\AuthItem;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use yii\filters\AccessControl;
 
 class UsersController extends Controller
 {
@@ -20,40 +21,17 @@ class UsersController extends Controller
                    'delete' => ['POST'],
                ],
             ],
-            //  'access' => [
-            //     'class' => AccessControl::className(),
-            //     'only' => ['create', 'update', 'delete'],
-            //     'denyCallback' => function ($rule, $action) {
-            //         throw new ForbiddenHttpException('You are not allowed to access this page');
-            //     },
-            //     'rules' => [
-            //         [
-            //             'allow' => true,
-            //             'actions' => ['create'],
-            //             'roles' => ['createPost'],
-            //         ],
-            //         [
-            //            'allow' => true,
-            //            'actions' => ['delete'],
-            //            'roles' => ['deletePost'],
-            //            'roleParams' =>[
-            //                //'post_id'=>Yii::$app->request->get('post_id'),
-            //                'owner_id'=>Yii::$app->request->get('owner_id'),
-            //            ],
-            //         ],
-            //         [
-            //             'allow' => true,
-            //             'actions' => ['update'],
-            //             'roles' => ['updatePost'],
-            //         ],
-            //         [
-            //            'allow' => true,
-            //            'actions' => ['view'],
-            //            'roles' => ['viewPost'],
-            //         ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['index', 'view', 'create', 'update', 'delete',],
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                ],
+            ],
 
-            //     ],
-            // ],
          ];
     }
 
@@ -113,12 +91,6 @@ class UsersController extends Controller
         return $this->redirect(['index']);
     }
 
-    // public function actionView($id)
-    // {
-    //     return $this->render('view', [
-    //         'model' => $this->findModel($id),
-    //     ]);
-    // }
 
     protected function findModel($id)
     {
@@ -134,21 +106,5 @@ class UsersController extends Controller
             'model' => $user,
         ]);
         
-        //$authorRole = AuthItem::findOne('author');
-        //$user->link($authorRole);
-        //$user->save();
-        //$auth->revoke($authorRole, $id);//die;
-        //$auth->assign($authorRole, $id);
-        //$uRoles = $user->roles;var_dump($uRoles);die;
-        //$newRoles = ['admin'];//var_dump($newRoles);die;
-        //$auth = Yii::$app->authManager;
-        //$oldRoles = $auth->getRolesByUser($id);
-
-
-        // $user = Yii::$app->db->createCommand('SELECT * FROM user WHERE id=:id')
-        //    ->bindValue(':id', $id)
-        //    ->queryOne();
-        //    var_dump($user);die;
-
     }
 }
