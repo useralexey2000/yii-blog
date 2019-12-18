@@ -1,10 +1,17 @@
 {
     "require": {
         "yiisoft/yii2": "*",
-        "yiisoft/yii2-bootstrap": "*"
+        "yiisoft/yii2-bootstrap": "*",
+        "yiidoc/yii2-redactor": "*",
+        "2amigos/yii2-tinymce-widget" : "*",
+        "2amigos/yii2-ckeditor-widget": "*",
+        "mihaildev/yii2-ckeditor": "*",
+        "mihaildev/yii2-elfinder": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",
         "yiisoft/yii2-gii": "*"
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

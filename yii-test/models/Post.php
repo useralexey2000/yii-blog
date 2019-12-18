@@ -13,6 +13,7 @@ use yii\helpers\StringHelper;
  *
  * @property int $id
  * @property string $title
+ * @property string $image
  * @property string|null $content
  * @property string|null $created_at
  * @property string|null $updated_at
@@ -20,6 +21,8 @@ use yii\helpers\StringHelper;
  */
 class Post extends ActiveRecord
 {
+    //public $_dir = "";
+
     public function behaviors()
     {
         return [
@@ -43,6 +46,7 @@ class Post extends ActiveRecord
     {
         return [
             [['title'], 'required'],
+            [['image'], 'string'],
             [['content'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 99],
@@ -55,6 +59,7 @@ class Post extends ActiveRecord
         return [
             'id' => 'ID',
             'title' => 'Title',
+            'image' => 'Image',
             'content' => 'Content',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
@@ -75,5 +80,13 @@ class Post extends ActiveRecord
             return StringHelper::truncateWords($this->content, $words, $suffix = '...', $asHtml = true);
         }
         return $this->content;
+    }
+
+    public function getDir(){
+        if ($this->_dir === ""){
+            $this->_dir = uniqid('', true);
+        }
+        error_log($this->_dir);
+        return $this->_dir;
     }
 }

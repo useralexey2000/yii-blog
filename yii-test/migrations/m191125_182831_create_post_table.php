@@ -15,6 +15,7 @@ class m191125_182831_create_post_table extends Migration
         $this->createTable('{{%post}}', [
             'id' => $this->primaryKey(),
             'title' => $this->string(99)->notNull()->unique(),
+            'image' => $this->string(200),
             'content' => $this->text(),
             'created_at' => $this->dateTime(),
             'updated_at' => $this->dateTime(),

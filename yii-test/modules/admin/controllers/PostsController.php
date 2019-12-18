@@ -75,7 +75,7 @@ class PostsController extends Controller
         $comments = new ActiveDataProvider([
             'query' => Comment::find()->where(['post_id'=> $id])->orderBy('updated_at DESC'),
             'pagination' => [
-                'pageSize' =>20,
+                'pageSize' =>5,
             ],
         ]);
         //$comments = $this->findModel($id)->comments;

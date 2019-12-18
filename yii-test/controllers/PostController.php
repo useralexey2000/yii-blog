@@ -80,6 +80,7 @@ class PostController extends Controller
     {
         $model = new Post();
         $model->user_id = Yii::$app->user->getId();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -108,7 +109,7 @@ class PostController extends Controller
         if (\Yii::$app->user->can('updatePost', ['user_id' => $model->user_id])){
 
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                var_dump($model);die;
+                //var_dump($model);die;
                 return $this->redirect(['view', 'id' => $model->id]); 
             }
             return $this->render('update', [
@@ -123,17 +124,18 @@ class PostController extends Controller
     public function actionComment()
     {
         $comment = new Comment();
+        
         if($comment->load(Yii::$app->request->post())){
             $comment->user_id = Yii::$app->user->getId();
             $comment->save();
-            $newComment = new Comment();
-
-            return $this->render('view', [
-                'model'=>$this->findModel($comment->post_id),
-                'comment'=> $newComment,
+            
+            return $this->redirect([
+                'view',
+                'id' => $comment->post_id,
             ]);
         }
     }
+
 
     protected function findModel($id)
     {
@@ -142,4 +144,54 @@ class PostController extends Controller
         }
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-}
+
+    // //Not used
+    // public function actionImage()
+    // {
+    //     error_log('in image method');
+
+    //     $imageFolder = 'upload/images/'. Yii::$app->user->getId(). '/';
+
+    //     if (!file_exists($imageFolder)) {
+    //         mkdir($imageFolder, 0777, true);
+    //     }
+
+    //     reset ($_FILES);
+    //     $temp = current($_FILES);
+    //     if (is_uploaded_file($temp['tmp_name'])){
+
+    //     // Sanitize input
+    //     if (preg_match("/([^\w\s\d\-_~,;:\[\]\(\).])|([\.]{2,})/", $temp['name'])) {
+
+    //         return [
+    //             'message' => 'Invalid file name',
+    //             'code' => 400,
+    //         ];
+    //     }
+    
+    //     // Verify extension
+    //     if (!in_array(strtolower(pathinfo($temp['name'], PATHINFO_EXTENSION)), array("gif", "jpg", "png"))) {
+
+    //         return [
+    //             'message' => 'Invalid extension',
+    //             'code' => 400,
+    //         ];
+    //     }
+    
+    //     $filetowrite = $imageFolder . $temp['name'];
+
+    //     move_uploaded_file($temp['tmp_name'], $filetowrite);
+    
+    //     // Respond to the successful upload with JSON.
+    //     // Use a location key to specify the path to the saved image resource.
+    //     return json_encode(array('location' => '/'.$filetowrite));
+
+    //     } else {
+    //       // Notify editor that the upload failed
+    //     return [
+    //         'message' => 'Server Error',
+    //         'code' => 500,
+    //     ];
+    //     }
+    // }
+}   

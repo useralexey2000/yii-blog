@@ -43,7 +43,9 @@ AppAsset::register($this)
                 'items' => [
                     ['label' => 'manage-users', 'url' => Url::to(['/admin/users']),],
                     '<li class="divider"></li>',
-                    ['label' => 'manage-posts', 'url' => Url::to(['/admin/posts']),]
+                    ['label' => 'manage-posts', 'url' => Url::to(['/admin/posts']),],
+                    '<li class="divider"></li>',
+                    ['label' => 'manage-files', 'url' => Url::to(['/admin/files']),],
                 ],
             ];
         }else{
