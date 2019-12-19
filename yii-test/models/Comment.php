@@ -6,6 +6,8 @@ use Yii;
 use yii\db\Expression;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
+use \yii\helpers\HtmlPurifier;
+
 
 /**
  * This is the model class for table "comment".
@@ -44,6 +46,9 @@ class Comment extends ActiveRecord
             [['post_id'], 'integer'],
             [['content'], 'required'],
             [['content'], 'string'],
+            ['content', 'filter', 'filter' => function($value){
+                return HtmlPurifier::process($value);
+            }],
             [['created_at', 'updated_at'], 'safe'],
             [['content'], 'string', 'max' => 200],
         ];

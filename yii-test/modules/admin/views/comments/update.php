@@ -5,8 +5,9 @@ use mihaildev\ckeditor\CKEditor;
 
 $this->title = 'Update comment: '.$model->id;
 ?>
-<div class="comment-form">
 
+<h3><?=Html::encode($this->title)?></h3>
+<div class="comment-form">
 
 <?php $form = ActiveForm::begin(); ?>
 

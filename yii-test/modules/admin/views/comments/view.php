@@ -4,13 +4,15 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
-
+use yii\web\YiiAsset;
 /* @var $this yii\web\View */
 /* @var $model app\models\Post */
 
 $this->title = $model->id;
-\yii\web\YiiAsset::register($this);
+YiiAsset::register($this);
 ?>
+<h3><?=Html::encode($this->title)?></h3>
+
 <div class="commetns-view">
 
     <?= DetailView::widget([

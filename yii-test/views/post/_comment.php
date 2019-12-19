@@ -1,5 +1,9 @@
+<?php 
+use yii\helpers\Html;
+?>
+
 <hr>
-<span><?= $model->user->username?></span>
+<span><?= Html::encode($model->user->username)?></span>
 <?=$model->content;?>
-<span><?=$model->updated_at;?></span>
+<span><?=Html::encode($model->updated_at);?></span>
 

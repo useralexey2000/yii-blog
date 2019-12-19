@@ -5,17 +5,12 @@ use yii\widgets\DetailView;
 use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Post */
-
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'Posts', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-\yii\web\YiiAsset::register($this);
 ?>
 <div class="post-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
+<h1><?= Html::encode($this->title) ?></h1>
 
     <?= DetailView::widget([
         'model' => $model,

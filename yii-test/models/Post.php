@@ -7,6 +7,8 @@ use yii\db\Expression;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 use yii\helpers\StringHelper;
+use \yii\helpers\HtmlPurifier;
+
 
 /**
  * This is the model class for table "post".
@@ -48,6 +50,9 @@ class Post extends ActiveRecord
             [['title'], 'required'],
             [['image'], 'string'],
             [['content'], 'string'],
+            ['content', 'filter', 'filter' => function($value){
+                return HtmlPurifier::process($value);
+            }],
             [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 99],
             [['title'], 'unique'],

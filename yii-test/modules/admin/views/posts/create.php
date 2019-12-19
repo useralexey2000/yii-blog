@@ -7,7 +7,7 @@ $this->title = 'Create Post';
 ?>
 <div class="post-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<h1><?= Html::encode($this->title) ?></h1>
 <div class="post-form">
 
     <?php $form = ActiveForm::begin(); ?>

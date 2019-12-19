@@ -8,15 +8,13 @@ use yii\bootstrap\ActiveForm;
 use yii\data\ActiveDataProvider;
 use mihaildev\ckeditor\CKEditor;
 
-
 $this->title = $model->title;
-// $this->params['breadcrumbs'][] = ['label' => 'Posts', 'url' => ['index']];
-// $this->params['breadcrumbs'][] = $this->title;
-\yii\web\YiiAsset::register($this);
 ?>
+<h1><?= Html::encode($this->title) ?></h1>
+
 <div class="post-view">
     <h2><?= Html::encode($this->title) ?></h2>
-    <p>created by: <?=$model->owner->username;?></p>
+    <p>created by: <?=Html::encode($model->owner->username);?></p>
     <?= Html::img(Html::encode($model->image), ['alt' => 'empty title', 'class' => 'post-img']) ?>
     <div class='post-content'>
         <?=$model->content;?>    
